@@ -1,15 +1,14 @@
-import NotificationHelper from "./notification-helper";
-import CONFIG from "../globals/config";
+import NotificationHelper from './notification-helper';
+import CONFIG from '../globals/config';
 
 const WebSocketInitiator = {
-  init(url){
+  init(url) {
     const webSocket = new WebSocket(url);
     webSocket.onmessage = this._onMessageHandler;
   },
 
   _onMessageHandler(message) {
     const movie = JSON.parse(message.data);
-
     NotificationHelper.sendNotification({
       title: `${movie.title} is on cinema!`,
       options: {
