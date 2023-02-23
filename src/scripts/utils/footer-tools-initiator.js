@@ -25,7 +25,6 @@ const FooterToolsInitiator = {
     });
   },
 
-  //eslint-diable-next-line no-empty-function
   async _initialState() {
     this._showSubscribeButton();
   },
@@ -38,7 +37,7 @@ const FooterToolsInitiator = {
       return;
     }
 
-    if(!(await this._isNotificationReady())) {
+    if (!(await this._isNotificationReady())) {
       console.log('Notification isn\'t available');
       return;
     }
@@ -48,7 +47,7 @@ const FooterToolsInitiator = {
       this._generateSubscribeOptions(),
     );
 
-    if(!pushSubscription) {
+    if (!pushSubscription) {
       console.log('Failed to subscribe push message');
       return;
     }
@@ -79,6 +78,7 @@ const FooterToolsInitiator = {
       await this._sendPostToServer(CONFIG.PUSH_MSG_UNSUBSCRIBE_URL, pushSubscription);
 
       const isHasBeenUnsubscribed = await pushSubscription.unsubscribe();
+      console.log('isHasBeenUnsubscribed: ', isHasBeenUnsubscribed);
       if (!isHasBeenUnsubscribed) {
         console.log('Failed to unsubscribe push message');
         await this._sendPostToServer(CONFIG.PUSH_MSG_SUBSCRIBE_URL, pushSubscription);
@@ -94,7 +94,6 @@ const FooterToolsInitiator = {
   },
 
   _urlB64ToUint8Array: (base64String) => {
-    //eslint-disable-next no-mixed-operators
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
     const base64 = (base64String + padding)
       .replace(/-/g, '+')
@@ -102,7 +101,6 @@ const FooterToolsInitiator = {
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
 
-    // eslint-diable-next-line no-plusplus
     for (let i = 0; i < rawData.length; i++) {
       outputArray[i] = rawData.charCodeAt(i);
     }
@@ -113,7 +111,7 @@ const FooterToolsInitiator = {
     return {
       userVisibleOnly: true,
       applicationServerKey: this._urlB64ToUint8Array(CONFIG.PUSH_MSG_VAPID_PUBLIC_KEY),
-    }
+    };
   },
 
   async _sendPostToServer(url, data) {
@@ -130,10 +128,10 @@ const FooterToolsInitiator = {
 
   _isSubscribedToServerForHiddenSubscribeButton(state = false) {
     if (state) {
-      this._subscribebutton.style.display = 'none';
+      this._subscribeButton.style.display = 'none';
       this._unsubscribeButton.style.display = 'inline-block';
     } else {
-      this._unsubscribebutton.style.display = 'none';
+      this._unsubscribeButton.style.display = 'none';
       this._subscribeButton.style.display = 'inline-block';
     }
   },
@@ -159,7 +157,7 @@ const FooterToolsInitiator = {
       }
     }
 
-    return True;
+    return true;
   },
 
   async _isNotificationReady() {
@@ -168,7 +166,7 @@ const FooterToolsInitiator = {
       return false;
     }
 
-    if (!NotificationHelper,_checkPermission()) {
+    if (!NotificationHelper._checkPermission()) {
       console.log('User did not granted the notification permission yet');
       const status = await Notification.requestPermission();
 
@@ -176,8 +174,9 @@ const FooterToolsInitiator = {
         window.alert('Cannot subscribe to push message because the status of notification permission is denied');
         return false;
       }
+
       if (status === 'default') {
-        window.alert('Cannot subscribe to push message because the status of notification permission is denied');
+        window.alert('Cannot subscribe to push message because the status of notification permission is ignored');
         return false;
       }
     }
