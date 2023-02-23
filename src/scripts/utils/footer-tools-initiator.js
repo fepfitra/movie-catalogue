@@ -8,25 +8,30 @@ const FooterToolsInitiator = {
       this._registrationServiceWorker = await navigator.serviceWorker.getRegistration();
     }
 
-    await this._initialistener();
+    await this._initialListener();
     await this._initialState();
   },
 
   async _initialListener() {
     this._subscribeButton.addEventListener('click', (event) => {
-      this._subscribeButton(event);
+      this._subscribePushMessage(event);
     });
 
     this._unsubscribeButton.addEventListener('click', (event) => {
-      this._unsubscribeButton(event);
+      this._unsubscribePushMessage(event);
     });
   },
 
   async _initialState() {},
 
+  async _subscribePushMessage(event) {
+    event.stopPropagation();
+    console.log('_subscribePushMessage');
+  },
+
   async _unsubscribePushMessage(event) {
     event.stopPropagation();
-    console.log('_ubsubscribePushMessage');
+    console.log('_unsubscribePushMessage');
   },
 
   _urlB64ToUint8Array: (base64String) => {
