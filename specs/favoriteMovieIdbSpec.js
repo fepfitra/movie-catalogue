@@ -1,5 +1,5 @@
-import { itActsAsFavoriteModel } from "./contract/favoriteMovieContract";
-import FavoriteMovieIdb from "../src/scripts/data/favorite-movie-idb";
+import { itActsAsFavoriteMovieModel } from './contract/favoriteMovieContract';
+import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
 
 describe('Favorite Movie Idb Contract Test Implementation', () => {
   afterEach(async () => {
@@ -8,5 +8,5 @@ describe('Favorite Movie Idb Contract Test Implementation', () => {
     });
   });
 
-  itActsAsFavoriteModel(FavoriteMovieIdb);
+  itActsAsFavoriteMovieModel(FavoriteMovieIdb);
 });

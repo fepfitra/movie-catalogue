@@ -1,14 +1,15 @@
-import { itActsAsFavoriteModel } from "./contract/favoriteMovieContract";
+import { itActsAsFavoriteMovieModel } from './contract/favoriteMovieContract';
 
-let favoriteMovies  = [];
+let favoriteMovies = [];
 
-const favoriteMovieArray = {
+const FavoriteMovieArray = {
+
   getMovie(id) {
     if (!id) {
       return;
     }
 
-    return favoriteMovies.find((movie) => movie.id == id);
+    return favoriteMovies.find((movie) => movie.id === id);
   },
 
   getAllMovies() {
@@ -28,12 +29,12 @@ const favoriteMovieArray = {
   },
 
   deleteMovie(id) {
-    favoriteMovies = favoriteMovies.filter((movie) => movie.id != id);
+    favoriteMovies = favoriteMovies.filter((movie) => movie.id !== id);
   },
 };
 
 describe('Favorite Movie Array Contract Test Implementation', () => {
   afterEach(() => favoriteMovies = []);
 
-  itActsAsFavoriteModel(favoriteMovieArray);
+  itActsAsFavoriteMovieModel(FavoriteMovieArray);
 });

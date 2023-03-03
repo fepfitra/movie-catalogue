@@ -21,9 +21,10 @@ const FavoriteMovieIdb = {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
   async putMovie(movie) {
-    if(!movie.hasOwnProperty('id')) {
+    if (!movie.hasOwnProperty('id')) {
       return;
     }
+
     return (await dbPromise).put(OBJECT_STORE_NAME, movie);
   },
   async deleteMovie(id) {
@@ -31,7 +32,7 @@ const FavoriteMovieIdb = {
   },
   async searchMovies(query) {
 
-  }
+  },
 };
 
 export default FavoriteMovieIdb;
