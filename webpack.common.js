@@ -1,16 +1,13 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
-    sw: path.resolve(__dirname, 'src/scripts/sw.js'),
-  },
+  entry: path.resolve(__dirname, 'src/scripts/index.js'),
   output: {
-    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -29,8 +26,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
+      filename: 'index.html',
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -39,6 +36,9 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/'),
         },
       ],
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: path.resolve(__dirname, 'src/scripts/sw.js'),
     }),
   ],
 };
