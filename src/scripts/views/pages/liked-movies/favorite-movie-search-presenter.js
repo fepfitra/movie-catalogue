@@ -8,7 +8,7 @@ class FavoriteMovieSearchPresenter {
   _listenToSearchRequestByUser() {
     this._view.runWhenUserIsSearching((latestQuery) => {
       this._searchMovies(latestQuery);
-    })
+    });
   }
 
   async _searchMovies(latestQuery) {
