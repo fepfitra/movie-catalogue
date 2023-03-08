@@ -121,7 +121,7 @@ describe('Searching movies', () => {
         expect(document.querySelectorAll('.movie-item__not__found').length)
           .toEqual(1);
         done();
-        });
+      });
 
       favoriteMovies.searchMovies.withArgs('film a').and.returnValues([]);
 
