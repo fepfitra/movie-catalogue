@@ -15,13 +15,15 @@ Scenario('liking one movie', (I) => {
 
   I.amOnPage('/');
 
+  I.waitForElement('.movie__title a',2);
   I.seeElement('.movie__title a');
   I.click(locate('.movie__title a').first());
 
+  I.waitForElement('#likeButton',2);
   I.seeElement('#likeButton');
-  pause();
-  // I.click('#likeButton');
+  I.click('#likeButton');
 
-  // I.amOnPage('/#/like');
-  // I.seeElement('.movie-item');
+  I.amOnPage('/#/like');
+  I.waitForElement('.movie-item',2);
+  I.seeElement('.movie-item');
 });
