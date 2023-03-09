@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "webpack-dev-server --config webpack.dev.js",
+    "start-dev": "webpack-dev-server --config webpack.dev.js --port 9000",
     "build": "webpack --config webpack.prod.js",
     "serve": "http-server dist",
     "test": "karma start ./karma.conf.js",
@@ -18,7 +18,7 @@
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "babel-loader": "^8.1.0",
-    "codeceptjs": "^3.4.1",
+    "codeceptjs": "^2.6.7",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.6.0",
     "eslint": "^7.3.1",
